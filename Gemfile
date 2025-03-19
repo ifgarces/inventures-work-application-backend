@@ -43,3 +43,5 @@ group :development, :test do
 
   gem "hirb", "~> 0.7.3", require: false
 end
+
+gem "dotenv-rails", "~> 3.1"
