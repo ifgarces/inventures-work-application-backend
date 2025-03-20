@@ -1,17 +1,37 @@
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require: rubocop-rails
 
 Layout/IndentationWidth:
-  EnforcedStyle: spaces
   Width: 2
+Layout/IndentationStyle:
+  EnforcedStyle: spaces
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: no_comma
-
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: no_comma
-
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/RedundantSelf:
+  Enabled: false
+Style/RedundantReturn:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
 
 Naming/VariableName:
   EnforcedStyle: camelCase
+Naming/MethodName:
+  EnforcedStyle: camelCase
+Naming/MethodParameterName:
+  #// EnforcedStyle: camelCase
+  Enabled: false
