@@ -27,6 +27,8 @@ Style/Documentation:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Naming/VariableName:
   EnforcedStyle: camelCase

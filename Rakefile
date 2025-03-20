@@ -5,22 +5,29 @@ require_relative "config/application"
 
 Rails.application.load_tasks
 
+namespace :app do
+  desc "Run the Rails development server"
+  task run: :environment do
+    port = ENV.fetch("DEV_RUNTIME_PORT")
+    sh "rails server --environment=development --binding=0.0.0.0 --port=#{port} --log-to-stdout"
+  end
+end
+
 namespace :lint do
   desc "Run RuboCop to check for code offenses"
-  task :check do
+  task check: :environment do
     sh "bundle exec rubocop"
   end
 
   desc "Run RuboCop and perform safe auto-corrections to code offenses"
-  task :fix do
+  task fix: :environment do
     sh "bundle exec rubocop --autocorrect"
   end
 end
 
-namespace :app do
-  desc "Run the Rails development server"
-  task :run do
-    port = ENV.fetch("DEV_RUNTIME_PORT")
-    sh "rails server --environment=development --binding=0.0.0.0 --port=#{port} --log-to-stdout"
+namespace :db do
+  desc "Load the database with mock data for testing"
+  task mock: :environment do
+    load Rails.root.join("db/mocks.rb")
   end
 end

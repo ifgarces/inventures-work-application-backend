@@ -38,7 +38,11 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem "hirb", "~> 0.7.3", require: false
+  # Better console output for ActiveRecord queries.
+  gem "hirb", "~> 0.7.3", require: true
+
+  # Fake data generation.
+  gem "faker", "~> 3.5", require: false
 end
 
-gem "dotenv-rails", "~> 3.1"
+gem "dotenv-rails", "~> 3.1", require: false

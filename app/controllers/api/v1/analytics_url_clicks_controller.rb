@@ -8,7 +8,7 @@ private
   end
 
   def safeParams
-    params.expect(
+    return params.expect(
       analyticsUrlClick: %i[shortened_url_mapping_id ipv4_address user_agent other_device_data_json]
     )
   end
