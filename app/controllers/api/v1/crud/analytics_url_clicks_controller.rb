@@ -1,4 +1,4 @@
-class Api::V1::AnalyticsUrlClicksController < ApplicationController
+class Api::V1::Crud::AnalyticsUrlClicksController < ApplicationController
   before_action :setAnalyticsUrlClick, only: %i[show destroy]
 
 private

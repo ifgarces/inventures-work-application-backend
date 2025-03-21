@@ -3,12 +3,14 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :analytics_url_clicks, only: %i[index show create]
-      resources :shortened_url_mappings, only: %i[index show]
+      namespace :crud do
+        resources :analytics_url_clicks, only: %i[index show create]
+        resources :shortened_url_mappings, only: %i[index show]
+      end
 
       scope :url_shortener do
-        get "", to: "url_shortener#create"
-        get ":short_code", to: "url_shortener#show"
+        post "", to: "url_shortener#shortenNewUrl"
+        get ":short_code", to: "url_shortener#retrieveTargetUrl"
       end
     end
   end

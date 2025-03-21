@@ -1,4 +1,4 @@
-class Api::V1::ShortenedUrlMappingsController < ApplicationController
+class Api::V1::Crud::ShortenedUrlMappingsController < ApplicationController
   before_action :setShortenedUrlMapping, only: %i[show destroy]
 
 private

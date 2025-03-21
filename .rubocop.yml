@@ -37,3 +37,6 @@ Naming/MethodName:
 Naming/MethodParameterName:
   #// EnforcedStyle: camelCase
   Enabled: false
+
+Metrics/MethodLength:
+  Max: 20

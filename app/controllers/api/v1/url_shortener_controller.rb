@@ -8,7 +8,7 @@ class Api::V1::UrlShortenerController < ApplicationController
     if shortenedUrlMappingRecord.save
       return render(
         status: :created,
-        partial: "api/v1/shortened_url_mappings/shortened_url_mapping",
+        partial: "api/v1/crud/shortened_url_mappings/shortened_url_mapping",
         locals: { shortenedUrlMapping: shortenedUrlMappingRecord }
       )
     end
