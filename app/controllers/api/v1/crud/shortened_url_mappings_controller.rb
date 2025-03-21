@@ -1,5 +1,5 @@
 class Api::V1::Crud::ShortenedUrlMappingsController < ApplicationController
-  before_action :setShortenedUrlMapping, only: %i[show destroy]
+  before_action :setShortenedUrlMapping, only: %i[show]
 
 private
 
@@ -11,15 +11,8 @@ public
 
   def index
     @shortenedUrlMappings = ShortenedUrlMapping.all
-
-    # return render(json: @shortenedUrlMappings)
   end
 
   def show
-    # return render(json: @shortenedUrlMapping)
-  end
-
-  def destroy
-    @shortenedUrlMapping.destroy!
   end
 end

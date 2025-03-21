@@ -26,6 +26,6 @@ class Api::V1::UrlShortenerController < ApplicationController
       return render(json: { target_url: shortenedUrlMappingRecord.target_url })
     end
 
-    return render(json: { error: "Short code not found" }, status: :not_found)
+    return head(:not_found)
   end
 end

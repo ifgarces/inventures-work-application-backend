@@ -1,5 +1,5 @@
 class Api::V1::Crud::AnalyticsUrlClicksController < ApplicationController
-  before_action :setAnalyticsUrlClick, only: %i[show destroy]
+  before_action :setAnalyticsUrlClick, only: %i[show]
 
 private
 
@@ -7,35 +7,36 @@ private
     @analyticsUrlClick = AnalyticsUrlClick.find(params.expect(:id))
   end
 
-  def safeParams
-    return params.expect(
-      analyticsUrlClick: %i[shortened_url_mapping_id ipv4_address user_agent other_device_data_json]
-    )
+  def safeModelParams
+    return params.require(:analytics_url_click).permit(%i[ipv4_address user_agent other_device_data_json])
+  end
+
+  def safeParentModelParams
+    return params.require(:shortened_url_mapping).permit(:short_code)
   end
 
 public
 
   def index
     @analyticsUrlClicks = AnalyticsUrlClick.all
-
-    return render(json: @analyticsUrlClicks)
   end
 
   def show
-    return render(json: @analyticsUrlClick)
   end
 
   def create
-    @analyticsUrlClick = AnalyticsUrlClick.new(self.safeParams)
+    shortenedUrlMapping = ShortenedUrlMapping.find_by!(short_code: self.safeParentModelParams.fetch(:short_code))
+    @analyticsUrlClick = AnalyticsUrlClick.new(self.safeModelParams)
+    @analyticsUrlClick.shortened_url_mapping = shortenedUrlMapping
 
     if @analyticsUrlClick.save
-      return render(json: @analyticsUrlClick, status: :created, location: @analyticsUrlClick)
+      return render(
+        status: :created,
+        partial: "api/v1/crud/analytics_url_clicks/analytics_url_click",
+        locals: { analyticsUrlClick: @analyticsUrlClick }
+      )
     end
 
     return render(json: @analyticsUrlClick.errors, status: :unprocessable_entity)
-  end
-
-  def destroy
-    @analyticsUrlClick.destroy!
   end
 end

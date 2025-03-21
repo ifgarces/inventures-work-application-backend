@@ -29,14 +29,17 @@ Style/IfUnlessModifier:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
+Style/EmptyMethod: # collides with Rails' opinionated code style for scaffold controllers
+  Enabled: false
 
 Naming/VariableName:
   EnforcedStyle: camelCase
 Naming/MethodName:
   EnforcedStyle: camelCase
 Naming/MethodParameterName:
-  #// EnforcedStyle: camelCase
-  Enabled: false
+  Enabled: false #// EnforcedStyle: camelCase
+Naming/BlockParameterName:
+  Enabled: false #// EnforcedStyle: camelCase
 
 Metrics/MethodLength:
   Max: 20

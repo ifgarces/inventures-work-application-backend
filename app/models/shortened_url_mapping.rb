@@ -1,5 +1,5 @@
 class ShortenedUrlMapping < ApplicationRecord
-  has_many(:analyticsUrlClicks, dependent: :destroy)
+  has_many(:analytics_url_clicks, dependent: :destroy)
 
   validates(:target_url, presence: true)
   validates(:short_code, presence: true, uniqueness: true)
