@@ -8,7 +8,7 @@ Deployment URL: `[[[WIP]]]`.
 
 - Ruby 3.3.0.
 - Postgres drivers relative to your OS. For Linux, you can install them with `sudo apt-get install libpq-dev`.
-- Postgres database, in case you decide to have it locally set-up (you could use NeonDB service for setting up a remote free Postgres instance).
+- Postgres database, in case you decide to have it locally set-up (you could instead use, for instance, [Neon](https://neon.tech/) for setting up a remote free Postgres instance, which is more convenient for this toy project).
 
 ## Build and run
 

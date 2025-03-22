@@ -22,10 +22,14 @@ class Api::V1::UrlShortenerController < ApplicationController
 
     shortenedUrlMappingRecord = ShortenedUrlMapping.find_by(short_code: shortCodeParam)
 
-    if shortenedUrlMappingRecord
-      return render(json: { target_url: shortenedUrlMappingRecord.target_url })
+    if shortenedUrlMappingRecord.nil?
+      return head(:not_found)
     end
 
-    return head(:not_found)
+    if shortenedUrlMappingRecord.expires_at < Time.zone.now
+      return render(json: { error: "short_code has expired" }, status: :gone)
+    end
+
+    return render(json: { target_url: shortenedUrlMappingRecord.target_url })
   end
 end
