@@ -9,7 +9,7 @@ namespace :app do
   desc "Run the Rails development server"
   task run: :environment do
     port = ENV.fetch("DEV_RUNTIME_PORT")
-    sh "rails server --environment=development --binding=0.0.0.0 --port=#{port} --log-to-stdout"
+    sh "rails server --binding=0.0.0.0 --port=#{port} --log-to-stdout"
   end
 end
 
