@@ -10,7 +10,7 @@
 /.bundle
 
 # Ignore all environment files.
-/.env*
+/.env.local
 
 # Ignore all logfiles and tempfiles.
 /log/*
