@@ -1,4 +1,10 @@
-require: rubocop-rails
+plugins: rubocop-rails
+
+AllCops:
+  NewCops: disable
+  Exclude:
+    - "bin/*"
+    - "db/**/*.rb"
 
 Layout/IndentationWidth:
   Width: 2
@@ -30,6 +36,8 @@ Style/IfUnlessModifier:
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/EmptyMethod: # collides with Rails' opinionated code style for scaffold controllers
+  Enabled: false
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 Naming/VariableName:

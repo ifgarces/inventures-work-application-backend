@@ -1,3 +1,5 @@
+# rubocop:disable Rails/Output
+
 require "faker"
 
 # ShortenedUrlMappings
@@ -24,3 +26,5 @@ ShortenedUrlMapping.last(shortenedUrlMappingsCount).find_each do |shortenedUrlMa
   end
   puts("Created #{clicksCount} AnalyticsUrlClicks for ShortenedUrlMapping.id=#{shortenedUrlMapping.id}")
 end
+
+# rubocop:enable Rails/Output
