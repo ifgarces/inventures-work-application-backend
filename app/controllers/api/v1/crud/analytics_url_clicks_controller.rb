@@ -8,7 +8,7 @@ private
   end
 
   def safeModelParams
-    return params.require(:analytics_url_click).permit(%i[ipv4_address user_agent other_device_data_json])
+    return params.fetch(:analytics_url_click, {}).permit(:other_device_data_json)
   end
 
   def safeParentModelParams
@@ -26,8 +26,15 @@ public
 
   def create
     shortenedUrlMapping = ShortenedUrlMapping.find_by!(short_code: self.safeParentModelParams.fetch(:short_code))
-    @analyticsUrlClick = AnalyticsUrlClick.new(self.safeModelParams)
-    @analyticsUrlClick.shortened_url_mapping = shortenedUrlMapping
+    @analyticsUrlClick = AnalyticsUrlClick.new(
+      self.safeModelParams.merge(
+        {
+          shortened_url_mapping: shortenedUrlMapping,
+          ipv4_address: request.headers["HTTP_X_FORWARDED_FOR"] || request.headers["X_FORWARDED_FOR"] || request.remote_ip,
+          user_agent: request.headers["HTTP_USER_AGENT"] || request.headers["USER_AGENT"]
+        }
+      )
+    )
 
     if @analyticsUrlClick.save
       return render(
