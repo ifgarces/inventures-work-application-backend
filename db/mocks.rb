@@ -2,7 +2,7 @@
 
 require "faker"
 
-# ShortenedUrlMappings
+puts("Generating ShortenedUrlMappings...")
 shortenedUrlMappingsCount = Faker::Number.between(from: 5, to: 10)
 shortenedUrlMappingsCount.times do
   ShortenedUrlMapping.create!(
@@ -13,8 +13,8 @@ shortenedUrlMappingsCount.times do
 end
 puts("Created #{shortenedUrlMappingsCount} ShortenedUrlMappings")
 
-# AnalyticsUrlClicks
-ShortenedUrlMapping.last(shortenedUrlMappingsCount).find_each do |shortenedUrlMapping|
+puts("Generating AnalyticsUrlClicks for ShortenedUrlMappings...")
+ShortenedUrlMapping.last(shortenedUrlMappingsCount).each do |shortenedUrlMapping|
   clicksCount = Faker::Number.between(from: 0, to: 10)
   clicksCount.times do
     AnalyticsUrlClick.create!(
